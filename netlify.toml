@@ -7,11 +7,11 @@
   
   # Directory with built files
   publish = "public"
-  
-  # Set Node.js version (matches your local environment)
-  environment = { NODE_VERSION = "18" }
 
 [build.environment]
+  # Set Node.js version
+  NODE_VERSION = "18"
+  
   # Increase Node memory for large builds
   NODE_OPTIONS = "--max-old-space-size=4096"
   
