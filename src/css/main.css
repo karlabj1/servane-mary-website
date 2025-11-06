@@ -804,8 +804,9 @@ nav {
 
 @media (max-width: 900px) {
   nav {
-    padding: 0 5vw 5px 5vw;
+    padding: 0 5vw;
     font-size: 20px;
+    align-items: center;
   }
 
   .hamburger {
