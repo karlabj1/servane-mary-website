@@ -800,7 +800,7 @@ nav {
 
 /* Works link - white on desktop */
 .nav-link[href="/artworks"] {
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 @media (max-width: 900px) {
@@ -845,7 +845,7 @@ nav {
 
   /* Hide Works link on mobile */
   .nav-link[href="/artworks"] {
-    display: none;
+    display: none !important;
   }
 
   .exhibition-btn {
