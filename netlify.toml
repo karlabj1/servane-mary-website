@@ -1,0 +1,50 @@
+# Netlify Build Configuration for Gatsby Site
+# This ensures optimal build settings and performance
+
+[build]
+  # Build command
+  command = "npm run build"
+  
+  # Directory with built files
+  publish = "public"
+  
+  # Set Node.js version (matches your local environment)
+  environment = { NODE_VERSION = "18" }
+
+[build.environment]
+  # Increase Node memory for large builds
+  NODE_OPTIONS = "--max-old-space-size=4096"
+  
+  # Gatsby specific optimizations
+  GATSBY_CPU_COUNT = "2"
+
+# Cache dependencies and Gatsby cache for faster builds
+[[plugins]]
+  package = "netlify-plugin-gatsby-cache"
+
+# Headers for better performance and security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Cache static assets for 1 year
+    Cache-Control = "public, max-age=31536000, immutable"
+    
+[[headers]]
+  for = "/page-data/*"
+  [headers.values]
+    # Don't cache page data
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/static/*"
+  [headers.values]
+    # Cache static files for 1 year
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Redirect rules (if needed)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
+
