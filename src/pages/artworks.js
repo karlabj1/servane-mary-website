@@ -70,7 +70,7 @@ export const query = graphql`
     contentfulHomePage {
       years
     }
-    allContentfulWork(sort: { fields: artworkDate, order: DESC }) {
+    allContentfulWork(sort: { artworkDate: DESC }) {
       nodes {
         id
         slug

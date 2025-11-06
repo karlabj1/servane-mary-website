@@ -51,7 +51,6 @@ module.exports = {
         spaceId: `hcaq4mgu4ubb`,
         accessToken: process.env.CONTENTFUL_API_KEY,
         downloadLocal: false, // Keep images on CDN for faster loading
-        forceFullSync: false, // Use incremental sync for faster builds
       },
     },
   ],

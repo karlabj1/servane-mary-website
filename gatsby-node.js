@@ -4,7 +4,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const result = await graphql(`
     query GetData {
-      allContentfulWork(sort: { fields: artworkDate, order: DESC }) {
+      allContentfulWork(sort: { artworkDate: DESC }) {
         edges {
           node {
             slug
@@ -13,7 +13,7 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
       allContentfulExhibition(
-        sort: { fields: exhibitionStartDate, order: DESC }
+        sort: { exhibitionStartDate: DESC }
       ) {
         edges {
           node {

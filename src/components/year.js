@@ -5,7 +5,7 @@ import { GatsbyImage } from "gatsby-plugin-image"
 const query = graphql`
   {
     allContentfulExhibition(
-      sort: { fields: exhibitionStartDate, order: DESC }
+      sort: { exhibitionStartDate: DESC }
     ) {
       nodes {
         id
