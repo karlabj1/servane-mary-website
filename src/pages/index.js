@@ -50,8 +50,8 @@ const IndexPage = ({ data }) => {
     const targetHeight = 1080
     const targetWidth = Math.round((width * targetHeight) / height)
     
-    // Add Contentful image transformation parameters
-    return `${url}?w=${targetWidth}&h=${targetHeight}&q=75&fm=webp&fit=fill`
+    // Add Contentful image transformation parameters - higher quality for crispness
+    return `${url}?w=${targetWidth}&h=${targetHeight}&q=90&fm=webp&fit=fill`
   }
 
   // Create shuffled image array for marquee with artwork links
