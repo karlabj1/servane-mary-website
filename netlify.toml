@@ -18,10 +18,6 @@
   # Gatsby specific optimizations
   GATSBY_CPU_COUNT = "2"
 
-# Cache dependencies and Gatsby cache for faster builds
-[[plugins]]
-  package = "netlify-plugin-gatsby-cache"
-
 # Headers for better performance and security
 [[headers]]
   for = "/*"
