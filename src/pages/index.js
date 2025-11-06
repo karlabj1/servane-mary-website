@@ -43,12 +43,24 @@ const IndexPage = ({ data }) => {
     return array
   }
 
+  // Optimize image URL with Contentful's Image API
+  const getOptimizedImageUrl = (url, width, height) => {
+    if (!url) return url
+    // Calculate target height based on viewport (100vh = ~1080px on most screens)
+    const targetHeight = 1080
+    const targetWidth = Math.round((width * targetHeight) / height)
+    
+    // Add Contentful image transformation parameters
+    return `${url}?w=${targetWidth}&h=${targetHeight}&q=75&fm=webp&fit=fill`
+  }
+
   // Create shuffled image array for marquee with artwork links
   const imageArray = shuffleArray(slideshowImages).map(img => {
     const artworkSlug = findArtworkByImageId(img.id)
     return {
       ...img,
-      linkTo: artworkSlug ? `/works/${artworkSlug}` : null
+      linkTo: artworkSlug ? `/works/${artworkSlug}` : null,
+      optimizedUrl: getOptimizedImageUrl(img.url, img.width, img.height)
     }
   })
 
@@ -64,15 +76,19 @@ const IndexPage = ({ data }) => {
                 {image.linkTo ? (
                   <Link to={image.linkTo} className="marquee-img-link">
                     <img
-                      src={image.url}
-                      alt={image.description}
+                      src={image.optimizedUrl}
+                      alt={image.description || ""}
+                      loading="lazy"
+                      decoding="async"
                       style={{ height: "100vh", width: `${imgWidth}vh` }}
                     />
                   </Link>
                 ) : (
                   <img
-                    src={image.url}
-                    alt={image.description}
+                    src={image.optimizedUrl}
+                    alt={image.description || ""}
+                    loading="lazy"
+                    decoding="async"
                     style={{ height: "100vh", width: `${imgWidth}vh` }}
                   />
                 )}

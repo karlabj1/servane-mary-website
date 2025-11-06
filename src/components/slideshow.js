@@ -18,6 +18,7 @@ const query = graphql`
 
 const SlideShow = () => {
   const data = useStaticQuery(query)
+  
   function shuffleArray(array) {
     let curId = array.length
     // There remain elements to shuffle
@@ -33,19 +34,33 @@ const SlideShow = () => {
     return array
   }
 
+  // Optimize image URL with Contentful's Image API
+  const getOptimizedImageUrl = (url, width, height) => {
+    if (!url) return url
+    // Calculate target height (80vh ≈ 860px on most screens)
+    const targetHeight = 860
+    const targetWidth = Math.round((width * targetHeight) / height)
+    
+    // Add Contentful image transformation parameters
+    return `${url}?w=${targetWidth}&h=${targetHeight}&q=75&fm=webp&fit=fill`
+  }
+
   const imageArray = shuffleArray(data.contentfulSlideshow.images)
 
   return (
     <Marquee gradient={false} className="image-marquee">
       {imageArray.map(image => {
         const imgWidth = (image.width * 80) / image.height
+        const optimizedUrl = getOptimizedImageUrl(image.url, image.width, image.height)
         return (
           <div key={image.id} className="marquee-img-container">
             <img
-              src={image.url}
-              alt={image.description}
+              src={optimizedUrl}
+              alt={image.description || ""}
+              loading="lazy"
+              decoding="async"
               style={{ height: "80vh", width: `${imgWidth}vh` }}
-            ></img>
+            />
           </div>
         )
       })}
