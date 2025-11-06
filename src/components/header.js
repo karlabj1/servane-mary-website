@@ -41,7 +41,7 @@ const Header = ({ isExhibitionOpen, toggleExhibitionMenu }) => {
           <span className={isMobileMenuOpen ? "active" : ""}></span>
         </button>
         <div className={`menu ${isMobileMenuOpen ? "mobile-open" : ""}`}>
-        <Link to="/artworks" className="nav-link" onClick={closeMobileMenu}>
+        <Link to="/artworks" className="nav-link works-link" onClick={closeMobileMenu}>
           Works
         </Link>
         <button className="exhibition-btn" onClick={toggleExhibitionMenu}>

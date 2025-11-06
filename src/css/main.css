@@ -799,7 +799,7 @@ nav {
 
 
 /* Works link - white on desktop */
-.nav-link[href="/artworks"] {
+.works-link {
   color: #ffffff !important;
 }
 
@@ -844,7 +844,7 @@ nav {
   }
 
   /* Hide Works link on mobile */
-  .nav-link[href="/artworks"] {
+  .works-link {
     display: none !important;
   }
 
