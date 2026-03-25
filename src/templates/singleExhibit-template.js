@@ -68,7 +68,9 @@ const SingleExhibit = ({ data, pageContext }) => {
     exhibitionImages,
     exhibitionOrganizer,
     pressRelease,
+    pressArticles,
     worksInExhibition,
+    relatedWorks,
   } = data.contentfulExhibition
 
   const exhibitionYear = new Date(exhibitionStartDate).getFullYear()
@@ -145,10 +147,29 @@ const SingleExhibit = ({ data, pageContext }) => {
                 year: "numeric",
               })}
             </p>
-            {pressRelease && (
-              <a href={pressRelease.url} className="exhibit-press-release">
-                View the Press Release
-              </a>
+            {(pressRelease || pressArticles) && (
+              <div className="exhibit-press-links">
+                {pressRelease && (
+                  <a
+                    href={pressRelease.url}
+                    className="exhibit-press-release"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View the Press Release
+                  </a>
+                )}
+                {pressArticles && (
+                  <a
+                    href={pressArticles.url}
+                    className="exhibit-press-release"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View press articles
+                  </a>
+                )}
+              </div>
             )}
             {worksInExhibition && (
               <article className="works-in-exhibit">
@@ -181,6 +202,35 @@ const SingleExhibit = ({ data, pageContext }) => {
             )}
           </article>
         </article>
+        {relatedWorks && relatedWorks.length > 0 && (
+          <article className="related-works-section">
+            <h3>Related Works</h3>
+            <article className="exhibit-works-container related-works-container">
+              {relatedWorks.map((work, index) => {
+                const slug = work.slug
+                const imgWidth =
+                  (work.artworkImages?.[0]?.gatsbyImageData.width * 150) /
+                  work.artworkImages?.[0]?.gatsbyImageData.height
+                return (
+                  <Link
+                    key={index}
+                    to={`/works/${slug}`}
+                    className="exhibit-work-thumbnail-container"
+                  >
+                    {work.artworkImages[0].gatsbyImageData && (
+                      <GatsbyImage
+                        image={work.artworkImages?.[0]?.gatsbyImageData}
+                        alt={work.artworkImages?.[0]?.description}
+                        style={{ width: `${imgWidth}px` }}
+                        className="work-thumbnail"
+                      ></GatsbyImage>
+                    )}
+                  </Link>
+                )
+              })}
+            </article>
+          </article>
+        )}
       </section>
       <AnimatePresence>
         {isOpen && (
@@ -227,6 +277,9 @@ export const query = graphql`
       pressRelease {
         url
       }
+      pressArticles {
+        url
+      }
       exhibitionLocation
       exhibitionImages {
         id
@@ -234,6 +287,15 @@ export const query = graphql`
         description
       }
       worksInExhibition {
+        artworkTitle
+        slug
+        artworkImages {
+          id
+          gatsbyImageData(placeholder: BLURRED)
+          description
+        }
+      }
+      relatedWorks {
         artworkTitle
         slug
         artworkImages {

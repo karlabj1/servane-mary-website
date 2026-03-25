@@ -669,6 +669,12 @@ nav {
   margin-bottom: 20px;
 }
 
+.exhibit-press-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .exhibit-press-release {
   font-weight: bold;
   font-size: var(--fs-small);

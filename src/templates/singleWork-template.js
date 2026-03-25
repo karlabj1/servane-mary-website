@@ -180,6 +180,18 @@ const SingleWork = ({ data, pageContext }) => {
                 })}
               </article>
             )}
+            <article className="work-navigation">
+              {prevSlug && (
+                <Link to={`/works/${prevSlug}`} className="work-nav-button work-nav-prev">
+                  ← PREVIOUS WORK
+                </Link>
+              )}
+              {nextSlug && (
+                <Link to={`/works/${nextSlug}`} className="work-nav-button work-nav-next">
+                  NEXT WORK →
+                </Link>
+              )}
+            </article>
           </article>
         </article>
       </section>
