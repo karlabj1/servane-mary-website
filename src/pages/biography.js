@@ -19,10 +19,14 @@ const Biography = ({ data }) => {
   return (
     <Layout>
       <section className="bio-page">
-        <a href={cvPdf} target="_blank" rel="noreferrer" className="cv-button">
-          View as PDF
-        </a>
-        {renderRichText(bioRichText, renderOptions)}
+        <div className="bio-page-inner">
+          <div className="bio-page-toolbar">
+            <a href={cvPdf} target="_blank" rel="noreferrer" className="cv-button">
+              View as PDF
+            </a>
+          </div>
+          <div className="bio-rich-text">{renderRichText(bioRichText, renderOptions)}</div>
+        </div>
       </section>
     </Layout>
   )

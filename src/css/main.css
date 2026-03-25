@@ -689,24 +689,28 @@ nav {
 }
 
 .bio-page {
-  position: relative;
-  padding: 0;
-  padding-top: 40px;
-  margin: 40px 10vw;
+  padding: 40px max(1.25rem, 5vw) 3rem;
+  margin: 0 auto;
+  max-width: min(42rem, 100%);
 }
 
-.bio-page p {
-  display: block;
-  min-height: var(--fs-normal);
+.bio-page-inner {
+  max-width: 65ch;
+  margin: 0 auto;
+}
+
+.bio-page-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1.75rem;
 }
 
 .cv-button {
-  position: absolute;
+  display: inline-block;
   font-size: var(--fs-small);
-  right: 0;
   border: 1px solid #000;
   border-radius: 4px;
-  padding: 4px 12px;
+  padding: 6px 14px;
   transition: 400ms;
 }
 
@@ -714,6 +718,55 @@ nav {
   color: #fff;
   background: #000;
   transition: 400ms;
+}
+
+.bio-rich-text {
+  font-size: var(--fs-normal);
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+}
+
+.bio-rich-text p {
+  margin: 0 0 1.15em;
+}
+
+.bio-rich-text p:last-child {
+  margin-bottom: 0;
+}
+
+.bio-rich-text h2,
+.bio-rich-text h3,
+.bio-rich-text h4 {
+  margin: 1.35em 0 0.55em;
+  line-height: 1.35;
+}
+
+.bio-rich-text h2:first-child,
+.bio-rich-text h3:first-child,
+.bio-rich-text h4:first-child {
+  margin-top: 0;
+}
+
+.bio-rich-text ul,
+.bio-rich-text ol {
+  margin: 0 0 1.15em;
+  padding-left: 1.35em;
+}
+
+.bio-rich-text ul {
+  list-style: disc;
+}
+
+.bio-rich-text ol {
+  list-style: decimal;
+}
+
+.bio-rich-text li {
+  margin-bottom: 0.35em;
+}
+
+.bio-rich-text li:last-child {
+  margin-bottom: 0;
 }
 
 .modal {
@@ -967,7 +1020,8 @@ nav {
   }
 
   .bio-page {
-    margin: 40px 5vw;
+    margin: 32px auto 2.5rem;
+    padding-top: 32px;
   }
 
   .year-container {
@@ -1088,12 +1142,6 @@ nav {
     right: 15px;
     padding: 8px 16px;
     font-size: 18px;
-  }
-
-  .cv-button {
-    position: static;
-    display: inline-block;
-    margin-bottom: 20px;
   }
 
   .password-container {
